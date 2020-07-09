@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const { InjectManifest } = require('workbox-webpack-plugin')
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
@@ -15,7 +16,7 @@ module.exports = {
             {
                 // Include ts, tsx, js, and jsx files.
                 test: /\.(ts|js)x?$/,
-                exclude: /node_modules/,
+                exclude: [/node_modules/, path.resolve(__dirname, './src/service-worker.js')],
                 use: 'ts-loader',
             },
         ],
@@ -25,9 +26,13 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, './index.html'),
         }),
+        new InjectManifest({
+            swSrc: './src/service-worker.js',
+            swDest: 'service-worker.js',
+        }),
     ],
     output: {
-        filename: '[name][contenthash].bundle.js',
+        filename: '[name].[contenthash].bundle.js',
         path: path.resolve(__dirname, './build'),
     },
     devServer: {
