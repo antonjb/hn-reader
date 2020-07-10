@@ -1,13 +1,17 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Status } from './components/Status/Status'
-import { Story } from './components/Story/Story'
+import { StoryList } from './components/StoryList/StoryList'
 
 export const App: React.FC = () => (
-    <div>
-        <Status />
-        <Story storyId={23789923} />
-        <Story storyId={23789886} />
-        <Story storyId={23789883} />
-    </div>
+    <Fragment>
+        <header>
+            <Status />
+            <h1>Hacker News Reader</h1>
+        </header>
+        <main>
+            <StoryList />
+        </main>
+    </Fragment>
 )
+
 App.displayName = 'App'
