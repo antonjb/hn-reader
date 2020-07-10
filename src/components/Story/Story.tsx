@@ -1,44 +1,39 @@
 import React from 'react'
+import { useStoryFetch } from './useStoryFetch'
+import { StorySkeleton, StoryItem } from './StoryItem'
 
-type url = string
-type unixDate = number
-
-export interface StoryProps {
-    title: string
-    url: url
-    author: string
-    publicationDate: unixDate
+interface StoryProps {
+    storyId: number
 }
 
-export const Story: React.FC<StoryProps> = ({ title, url, author, publicationDate }) => {
-    const date = new Date(publicationDate * 1_000)
+export const Story: React.FC<StoryProps> = ({ storyId }) => {
+    const [isLoading, error, storyData] = useStoryFetch(storyId)
 
-    return (
-        <section>
-            <h2>
-                <a href={url} target="_blank" rel="noopener noreferrer">
-                    {title}
-                </a>
-            </h2>
-            <div>
-                <p>{author}</p>
-                <time data-testid="publicationDate" dateTime={date.toISOString()}>
-                    {date.toLocaleString('en-AU')}
-                </time>
-            </div>
-        </section>
-    )
+    if (error) {
+        return null
+    }
+
+    if (isLoading) {
+        return <StorySkeleton id={storyId} />
+    }
+
+    if (
+        storyData &&
+        storyData.type === 'story' &&
+        storyData.dead !== true &&
+        storyData.deleted !== true
+    ) {
+        return (
+            <li>
+                <StoryItem
+                    author={storyData.by}
+                    publicationDate={storyData.time}
+                    title={storyData.title}
+                    url={storyData.url}
+                />
+            </li>
+        )
+    }
+
+    return null
 }
-Story.displayName = 'Story'
-
-// Visual representation of a story whilst loading
-export const StorySkeleton: React.FC<{ id: string }> = ({ id }) => (
-    <section aria-label={`loading story ${id}`}>
-        <div />
-        <div>
-            <div />
-            <div />
-        </div>
-    </section>
-)
-StorySkeleton.displayName = 'StorySkeleton'

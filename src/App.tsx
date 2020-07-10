@@ -5,12 +5,9 @@ import { Story } from './components/Story/Story'
 export const App: React.FC = () => (
     <div>
         <Status />
-        <Story
-            title="Great CSS Frameworks for Web Developers"
-            url="https://insights.dice.com/2020/07/09/5-great-css-frameworks-for-web-developers/"
-            author="Jane Smith"
-            publicationDate={1594298350}
-        />
+        <Story storyId={23789923} />
+        <Story storyId={23789886} />
+        <Story storyId={23789883} />
     </div>
 )
 App.displayName = 'App'
