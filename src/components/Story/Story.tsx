@@ -1,5 +1,5 @@
 import React from 'react'
-import { useStoryFetch } from './useStoryFetch'
+import { useStoryFetch } from '../../Hooks/useStoryFetch'
 import { StorySkeleton, StoryItem } from './StoryItem'
 
 interface StoryProps {

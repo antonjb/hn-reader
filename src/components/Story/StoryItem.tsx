@@ -1,5 +1,5 @@
 import React from 'react'
-import { url, unixDate } from './useStoryFetch'
+import { url, unixDate } from '../../Hooks/useStoryFetch'
 
 export interface StoryProps {
     title: string
@@ -30,7 +30,7 @@ export const StoryItem: React.FC<StoryProps> = ({ title, url, author, publicatio
 StoryItem.displayName = 'Story'
 
 // Visual representation of a story whilst loading
-export const StorySkeleton: React.FC<{ id: number }> = ({ id }) => (
+export const StorySkeleton: React.FC<{ id?: number }> = ({ id }) => (
     <section aria-label={`loading story ${id}`}>
         <div />
         <div>
