@@ -3,6 +3,11 @@ importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox
 workbox.core.skipWaiting()
 workbox.core.clientsClaim()
 
-workbox.precaching.precacheAndRoute(self.__WB_MANIFEST)
+workbox.routing.registerRoute(
+    ({ url }) => url.origin === 'https://hacker-news.firebaseio.com',
+    new workbox.strategies.StaleWhileRevalidate({
+        cacheName: 'hn-api-cache',
+    })
+)
 
-// TODO: Handle fetch calls once that's in.
+workbox.precaching.precacheAndRoute(self.__WB_MANIFEST)

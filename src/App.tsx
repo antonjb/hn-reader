@@ -1,9 +1,13 @@
-import React, { Fragment } from 'react'
+import React from 'react'
+import { Helmet, HelmetProvider } from 'react-helmet-async'
 import { Status } from './components/Status/Status'
 import { StoryList } from './components/StoryList/StoryList'
 
 export const App: React.FC = () => (
-    <Fragment>
+    <HelmetProvider>
+        <Helmet>
+            <link rel="preconnect" href="https://hacker-news.firebaseio.com" />
+        </Helmet>
         <header>
             <Status />
             <h1>Hacker News Reader</h1>
@@ -11,7 +15,7 @@ export const App: React.FC = () => (
         <main>
             <StoryList />
         </main>
-    </Fragment>
+    </HelmetProvider>
 )
 
 App.displayName = 'App'
