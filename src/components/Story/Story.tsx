@@ -1,6 +1,7 @@
 import React from 'react'
 import { useStoryFetch } from '../../Hooks/useStoryFetch'
 import { StorySkeleton, StoryItem } from './StoryItem'
+import './Story.css'
 
 interface StoryProps {
     storyId: number
@@ -14,7 +15,11 @@ export const Story: React.FC<StoryProps> = ({ storyId }) => {
     }
 
     if (isLoading) {
-        return <StorySkeleton id={storyId} />
+        return (
+            <li className="story-list-item">
+                <StorySkeleton id={storyId} />
+            </li>
+        )
     }
 
     if (
@@ -24,7 +29,7 @@ export const Story: React.FC<StoryProps> = ({ storyId }) => {
         storyData.deleted !== true
     ) {
         return (
-            <li>
+            <li className="story-list-item">
                 <StoryItem
                     author={storyData.by}
                     publicationDate={storyData.time}

@@ -1,4 +1,5 @@
 import React from 'react'
+import './Status.css'
 
 export const Status: React.FC = () => {
     const [status, setStatus] = React.useState(navigator.onLine)
@@ -10,6 +11,7 @@ export const Status: React.FC = () => {
 
         window.addEventListener('online', setStatusHandler)
         window.addEventListener('offline', setStatusHandler)
+        setStatusHandler()
 
         return () => {
             window.removeEventListener('online', setStatusHandler)
@@ -17,6 +19,14 @@ export const Status: React.FC = () => {
         }
     }, [])
 
-    return <div>{status ? 'online' : 'offline'}</div>
+    return (
+        <div
+            className={`status-indicator ${
+                status ? 'status-indicator-online' : 'status-indicator-offline'
+            }`}
+        >
+            {status ? 'online' : 'offline'}
+        </div>
+    )
 }
 Status.displayName = 'Status'

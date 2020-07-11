@@ -1,0 +1,79 @@
+:root {
+    --color-light: #f6faf1;
+    --color-light-accent: #5d86dc;
+    --color-dark-accent: #254aa4;
+    --color-highlight: #cb4267;
+    --color-skeleton: #dde1d9;
+    --base-font: 1rem;
+    --font-lg: 1.25rem;
+}
+
+body,
+h1,
+ul[class],
+ol[class],
+li {
+    margin: 0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    scroll-behavior: smooth;
+    text-rendering: optimizeSpeed;
+    line-height: 1.5;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
+        'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    background: radial-gradient(
+            circle,
+            transparent 20%,
+            var(--color-dark-accent) 20%,
+            var(--color-dark-accent) 80%,
+            transparent 80%,
+            transparent
+        ),
+        radial-gradient(
+                circle,
+                transparent 20%,
+                var(--color-dark-accent) 20%,
+                var(--color-dark-accent) 80%,
+                transparent 80%,
+                transparent
+            )
+            25px 25px,
+        linear-gradient(var(--color-light-accent) 4px, transparent 4px) 0 -2px,
+        linear-gradient(90deg, var(--color-light-accent) 4px, transparent 4px) -2px 0;
+    background-color: var(--color-dark-accent);
+    background-size: 50px 50px, 50px 50px, 25px 25px, 25px 25px;
+}
+
+main {
+    display: grid;
+    grid-template-columns: minmax(1rem, 1fr) minmax(0, 120ch) minmax(1rem, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+main > * {
+    grid-column: 2 / span 1;
+}
+
+header {
+    margin-top: 2rem;
+}
+
+header h1 {
+    font-size: 4rem;
+    color: var(--color-light);
+    font-weight: 900;
+    text-align: center;
+    text-shadow: 1px 9px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    transform: rotate(-6deg);
+}

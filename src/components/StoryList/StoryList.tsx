@@ -20,13 +20,9 @@ export const StoryList: React.FC = () => {
 
     return (
         <Fragment>
-            <ul aria-live="polite">
+            <ul className="story-list" aria-live="polite">
                 {isLoading
-                    ? Array.from(Array(10)).map((_, idx) => (
-                          <li key={idx}>
-                              <StorySkeleton />
-                          </li>
-                      ))
+                    ? Array.from(Array(10)).map((_, idx) => <StorySkeleton key={idx} />)
                     : loadedStories.map((storyId) => <Story key={storyId} storyId={storyId} />)}
             </ul>
             {!isLoading && <ScrollObserver onIntersect={onIntersectHandler} />}
