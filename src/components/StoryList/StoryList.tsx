@@ -29,7 +29,7 @@ export const StoryList: React.FC = () => {
                       ))
                     : loadedStories.map((storyId) => <Story key={storyId} storyId={storyId} />)}
             </ul>
-            <ScrollObserver onIntersect={onIntersectHandler} />
+            {!isLoading && <ScrollObserver onIntersect={onIntersectHandler} />}
         </Fragment>
     )
 }
