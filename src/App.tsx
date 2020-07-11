@@ -2,6 +2,7 @@ import React from 'react'
 import { Helmet, HelmetProvider } from 'react-helmet-async'
 import { Status } from './components/Status/Status'
 import { StoryList } from './components/StoryList/StoryList'
+import './App.css'
 
 export const App: React.FC = () => (
     <HelmetProvider>

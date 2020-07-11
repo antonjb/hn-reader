@@ -19,6 +19,11 @@ module.exports = {
                 exclude: [/node_modules/, path.resolve(__dirname, './src/service-worker.js')],
                 use: 'ts-loader',
             },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader'],
+                exclude: [/node_modules/],
+            },
         ],
     },
     plugins: [
